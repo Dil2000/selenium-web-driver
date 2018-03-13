@@ -11,7 +11,7 @@ chrome.setDefaultService(service);
 
 
 before ->
-  @timeout 100000
+  @timeout 10000
   @driver = new selenium.Builder()
     .withCapabilities(selenium.Capabilities.chrome())
     .build()
@@ -29,9 +29,9 @@ describe 'Webdriver tutorial', ->
     expect(@driver.getTitle()).to.eventually.contain 'Getting started with Selenium Webdriver for node.js'
 
   it 'has publication date', ->
-    text = @driver.findElement(css: '.post .meta time').getText()
-    expect(text).to.eventually.equal 'December 30th, 2014'
+    text = @driver.findElement(linkText: 'Max Edmands').getText()
+    expect(text).to.eventually.equal 'Max Edmands'
 
   it 'links back to the homepage', ->
-    @driver.findElement(linkText: 'Bites').click()
-    expect(@driver.getCurrentUrl()).to.eventually.equal 'https://team.goodeggs.com/getting-started-with-selenium-webdriver-for-node-js-f262a00c52e1'
+    @driver.findElement(linkText: 'Jonah Williams').click()
+    expect(@driver.getCurrentUrl()).to.eventually.equal 'https://team.goodeggs.com/@jonah_goodeggs'
